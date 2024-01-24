@@ -59,19 +59,50 @@ let products = [
  //     })
  // }
  
- function showProducts(){
-     products.forEach(product =>{
-         console.log(product.name);
-         let div = document.createElement('div')
-                     div.classList.add('product')
-                     div.innerHTML = `
-                         <h2 class="name">${product.name}</h2>
-                         <p class="price">Pret: ${product.price}</p>
-                         <p class="image"><img src="${product.image}"></p>
-                         <p class="description">${product.description}</p>
-                     `
-                     document.getElementById('products').append(div)
-     })
- }
- showProducts();
+ function showProducts() {
+    clearProducts()
+
+    let minPrice = document.querySelector('#min').value
+    let maxPrice = document.querySelector('#max').value
+
+    products
+        .filter(product => product.price >= minPrice && product.price <= maxPrice)
+        .forEach(product => {
+            let div = document.createElement('div')
+            div.classList.add('product')
+            div.innerHTML = `
+                <h2 class="name">${product.name}</h2>
+                <p class="price">Pret: ${product.price}</p>
+                <p class="image"><img src="${product.image}"></p>
+                <p class="description">${product.description}</p>
+            `
+            document.querySelector('#products').append(div)
+        });
+}
+
+function clearProducts() {
+    document.querySelector('#products').replaceChildren()
+}
+
+function updateMinPrice() {
+    let minPrice = document.querySelector('#min').value
+    document.querySelector('#minValue').innerText = minPrice
+}
+
+function updateMaxPrice() {
+    let maxPrice = document.querySelector('#max').value
+    document.querySelector('#maxValue').innerText = maxPrice
+}
+
+function init() {
+    showProducts()
+    updateMinPrice()
+    updateMaxPrice()
+}
+
+window.addEventListener('load', init)
+document.querySelector('#filter').addEventListener('click', showProducts)
+document.querySelector('#min').addEventListener('change', updateMinPrice)
+document.querySelector('#max').addEventListener('change', updateMaxPrice)
+     
  
