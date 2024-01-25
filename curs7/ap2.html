@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Metoda 2 de a crea obiecte folosind Constructor function cu return</h1>
+    <script>
+function produsNou (num, pr, st, df) {
+ const obj ={};
+ obj.nume = num;
+obj.pret = pr;
+obj.stoc = st;
+obj.dataFabricarii = df;
+obj.afiseaza = function() {
+    console.log(`Produsul ${obj.nume} costa ${obj.pret}`)
+    console.log(`Produsul ${this.nume} costa ${this.pret}`)
+}
+obj.cumpara = function() {
+    if(this.stoc>0){
+        this.stoc -=1;
+        console.log(`Produsul ${this.nume} a fost adaugat in cos`)
+    }
+}
+    return obj;
+}
+const paine = produsNou(' paine ', 8, 36, '2020-02-22');
+paine.afiseaza();
+paine.cumpara();
+console.log(paine.nume);
+// console.log(paine['nume']);
+// paine.nume = 'paine cu maia' ;
+// console.log (paine['nume']);
+// definim o noua proprietate
+//paine.gramaj = '500';
+//console.log(paine.gramaj);
+// definim un nou produs 
+const apa = produsNou ('apa plata', 3, 100, '2022-01-05');
+apa.afiseaza();
+    </script>
+</body>
+</html>

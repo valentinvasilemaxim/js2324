@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>
+        folosind una din cele 5 metode prezentate, creati 2 obiecte de tip Student, cu structura (membrii obiectului):
+        Proprietati: id, nume, varsta, nota1, nota2, media;
+        Metode: salut(), examen(), calMedia();
+    </h2>
+    <script>
+
+
+
+
+function Student (id, nume, varsta) {
+    this.id = id;
+    this.nume = nume;
+    this.varsta = varsta;
+
+    this.salut = function() {
+    console.log(`Buna ziua, numele meu este: ${this.nume} si am ${this.varsta}ani.`)
+}
+    
+    this.examen = function(nota1, nota2){
+    this.nota1 = parseInt(nota1);
+    this.nota2 = parseInt (nota2);
+    console.log(`Azi am terminat toate examenele la JavaScript`);
+    }
+    this.callMedia = function() {
+        if (this.nota1 > 1 && this.nota1<=10 && this.nota2 >1 && this.nota2<=10) {
+            this.media = (this.nota1 + this.nota2)/ 2;
+        }
+        else {
+            console.error (`Nu sunt suficiente note`);
+        }
+    }
+}
+const student1 = new Student (1, 'Popescu Ion', 19);
+const student2 = new Student (2, 'Ionescu Dan', 40);
+student1.salut();
+student2.salut();
+student1.examen(8, 10);
+student1.callMedia();
+console.info(student1.media);
+
+function StudentNou (id, nume, varsta) {
+    this.id = id;
+    this.nume = nume;
+    this.varsta = varsta;
+
+StudentNou.prototype.salut = function() {
+    console.log(`Buna ziua, numele meu este: ${this.nume} si am ${this.varsta}ani.`)}
+    
+    StudentNou.prototype.examen = function(nota1, nota2){
+    this.nota1 = parseInt(nota1);
+    this.nota2 = parseInt (nota2);
+    console.log(`Azi am terminat toate examenele la JavaScript`);
+    }
+    StudentNou.prototype.callMedia = function() {
+        if (this.nota1 > 1 && this.nota2 >1) {
+            this.media = (this.nota1 + this.nota2 )/ 2;
+        }
+    }
+}
+const student3 = new StudentNou (3, 'Vasilescu Maria', 19);
+const student4 = new StudentNou (4, 'Dumitrescu Ana', 32);
+console.log(student1);
+console.log(student3);
+// student4.examen(7, 9);
+// student4.callMedia();
+
+    </script>
+</body>
+</html>
